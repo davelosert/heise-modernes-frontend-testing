@@ -1,0 +1,6 @@
+{
+  "require": [
+    "@babel/register",
+    "global-jsdom/register"
+  ]
+}

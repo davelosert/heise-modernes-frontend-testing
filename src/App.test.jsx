@@ -1,12 +1,13 @@
-import * as React from 'react';
-import { render } from '@testing-library/react';
-import { expect } from 'chai';
 import App from './App';
+import { assert } from 'assertthat';
+import { render } from '@testing-library/react';
+import * as React from 'react';
 
 describe('<App>', () => {
-  it('renders learn react link', () => {
+  it('renders the headline.', async () => {
     const { getByText } = render(<App />);
-    const linkElement = getByText(/learn react/i);
-    expect(document.body.contains(linkElement));
+    const headline = getByText(/impftermin buchen/iu);
+
+    assert.that(document.body.contains(headline)).is.true();
   });
 });

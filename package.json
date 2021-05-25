@@ -2,7 +2,8 @@
   "scripts": {
     "start": "webpack serve",
     "test": "mocha 'src/**/*.test.{js,jsx}'",
-    "test:watch": "mocha --watch 'src/**/*.test.{js,jsx}'"
+    "test:watch": "mocha --watch 'src/**/*.test.{js,jsx}'",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.14.3",
@@ -17,12 +18,14 @@
     "@babel/preset-env": "7.14.2",
     "@babel/preset-react": "7.13.13",
     "@babel/register": "7.13.16",
+    "@testing-library/cypress": "7.0.6",
     "@testing-library/dom": "7.31.0",
     "@testing-library/react": "11.2.6",
     "@testing-library/user-event": "13.1.9",
     "assertthat": "6.2.1",
     "babel-loader": "8.2.2",
     "css-loader": "5.2.5",
+    "cypress": "7.4.0",
     "eslint": "7.27.0",
     "eslint-config-es": "3.29.0",
     "global-jsdom": "8.1.0",

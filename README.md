@@ -1,25 +1,42 @@
-# New Project
+# GetVaxxed
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+Diese App ist der Begleit-Code zum Webinar von heise [Modernes Frontend-Testing in der Praxis](https://webinare.heise.de/webentwicklung-in-der-praxis/frontend-testing/).
+Es handelt sich um eine Beispielhafte App zur Buchung von Impf-Terminen.
 
-## Available Scripts
+## Voraussetzungen
 
-### npm start
+Auf dem System werden folgende Installationen benötigt:
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+- Node.js (> Version 12)
+- npm (> Version 6)
+- Chrome oder Firefox als Browser
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+## Installation der Abhängigkeiten
 
-### npm run build
+Vor dem ersten Start müssen alle Abhängigkeiten einmalig installiert werden. Öffne dazu ein Terminal, navigiere in das Projektverzeichnis und tippe dann:
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+```shell
+$ npm install
+```
 
-**For the best production performance:** Add a build bundler plugin like "@snowpack/plugin-webpack" to your `snowpack.config.js` config file.
+## Starten der App und Tests
 
-### npm test
+### App
 
-Launches the application test runner.
-Run with the `--watch` flag (`npm test -- --watch`) to run in interactive watch mode.
+Die App kann über folgenden Befehl gestartet werden:
+
+```shell
+$ npm start
+```
+
+### Unit- und Component-Tests
+
+```shell
+$ npm run test
+```
+
+### Browser-Tests
+
+```shell
+$ npm run cypress:open
+```

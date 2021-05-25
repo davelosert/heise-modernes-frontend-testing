@@ -2,7 +2,7 @@
 
 describe('Application Tests', () => {
   it('loads the page.', () => {
-    cy.visit('http://localhost:8080');
+    cy.visit('/');
 
     cy.contains('GetVaxxed!');
   });
@@ -17,7 +17,7 @@ describe('Application Tests', () => {
       hours: [ '09:10 Uhr' ]
     }]);
 
-    cy.visit('http://localhost:8080');
+    cy.visit('/');
 
     cy.contains('22.05.').click();
     cy.contains('09:10 Uhr').click();

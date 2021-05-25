@@ -4,7 +4,6 @@
     "start:frontend": "webpack serve",
     "start:backend": "json-server --watch backendMockData.json",
     "test": "mocha 'src/**/*.test.{js,jsx}'",
-    "test:watch": "mocha --watch 'src/**/*.test.{js,jsx}'",
     "cypress:open": "cypress open"
   },
   "dependencies": {

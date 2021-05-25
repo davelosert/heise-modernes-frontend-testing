@@ -20,7 +20,7 @@ describe('ValuePicker', () => {
     assert.that(getByLabelText('22.05.')).is.not.null();
   });
 
-  it('marks the selected value as active.', async () => {
+  it('sets "checked" to true for the clicked option.', async () => {
     const mockDates = [
       { value: '21.05.', selected: false },
       { value: '22.05.', selected: true }

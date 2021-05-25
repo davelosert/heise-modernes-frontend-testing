@@ -1,17 +1,17 @@
 const convertToFormState = dates =>
   dates.
-    filter(date => date.hours.length > 0).
-    map(date => ({
-      ...date,
+    filter(dateDescriptor => dateDescriptor.hours.length > 0).
+    map(dateDescriptor => ({
+      value: dateDescriptor.date,
       selected: false,
-      hours: date.hours.map(hour => ({
-        hour,
+      hours: dateDescriptor.hours.map(hour => ({
+        value: hour,
         selected: false
       }))
     }));
 
 const setSelectedDate = (selectDate, formState) => formState.map(dateState => {
-  if (dateState.date === selectDate) {
+  if (dateState.value === selectDate) {
     return { ...dateState, selected: true };
   }
 
@@ -23,7 +23,7 @@ const setSelectedHour = (selectedHour, formState) => formState.map(dateState => 
     return {
       ...dateState,
       hours: dateState.hours.map(hourState => {
-        if (hourState.hour === selectedHour) {
+        if (hourState.value === selectedHour) {
           return { ...hourState, selected: true };
         }
 

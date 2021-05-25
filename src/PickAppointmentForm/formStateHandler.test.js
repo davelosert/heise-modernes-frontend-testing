@@ -7,20 +7,18 @@ describe('formStateHandler', () => {
       assert.that(convertToFormState([])).is.equalTo([]);
     });
 
-    it('adds selected fields a single date and hours and sets them to false.', async () => {
+    it('converts dates and hours to a nested object with "value" and "selected".', async () => {
       const inputDates = [
         { date: '21.05.', hours: [ '08:50' ]}
       ];
 
       const result = convertToFormState(inputDates);
 
-      assert.that(result).is.equalTo([
-        {
-          date: '21.05.',
-          selected: false,
-          hours: [{ hour: '08:50', selected: false }]
-        }
-      ]);
+      assert.that(result).is.equalTo([{
+        value: '21.05.',
+        selected: false,
+        hours: [{ value: '08:50', selected: false }]
+      }]);
     });
 
     it('filters out dates without any available hours.', async () => {
@@ -34,7 +32,7 @@ describe('formStateHandler', () => {
 
   describe('setSelectedDate', () => {
     it('sets selected to true for the given date.', async () => {
-      const formState = [{ date: '21.05.', selected: false, hours: [{ hour: '08:50', selected: false }]}];
+      const formState = [{ value: '21.05.', selected: false, hours: [{ value: '08:50', selected: false }]}];
 
       const actualFromState = setSelectedDate('21.05.', formState);
 
@@ -46,8 +44,8 @@ describe('formStateHandler', () => {
 
     it('sets a previously selected date to false.', async () => {
       const formState = [
-        { date: '21.05.', selected: false, hours: [{ hour: '08:50', selected: false }]},
-        { date: '22.05.', selected: true, hours: [{ hour: '08:50', selected: false }]}
+        { value: '21.05.', selected: false, hours: [{ value: '08:50', selected: false }]},
+        { value: '22.05.', selected: true, hours: [{ value: '08:50', selected: false }]}
       ];
 
       const actualFromState = setSelectedDate('21.05.', formState);
@@ -62,24 +60,26 @@ describe('formStateHandler', () => {
   describe('setSelectedHour', () => {
     it('sets the hour to true.', async () => {
       const formState = [
-        { date: '22.05.', selected: true, hours: [{ hour: '08:50', selected: false }]}
+        { value: '22.05.', selected: true, hours: [{ value: '08:50', selected: false }]}
       ];
 
       const actualFromState = setSelectedHour('08:50', formState);
 
       assert.that(actualFromState).is.equalTo([
-        { ...formState[0], hours: [{ hour: '08:50', selected: true }]}
+        { ...formState[0], hours: [{ value: '08:50', selected: true }]}
       ]);
     });
 
     it('sets a previously selected hour to false.', async () => {
       const formState = [
-        { date: '22.05.',
+        {
+          value: '22.05.',
           selected: true,
           hours: [
-            { hour: '08:50', selected: false },
-            { hour: '09:00', selected: true }
-          ]}
+            { value: '08:50', selected: false },
+            { value: '09:00', selected: true }
+          ]
+        }
       ];
 
       const actualFromState = setSelectedHour('08:50', formState);
@@ -87,8 +87,8 @@ describe('formStateHandler', () => {
       assert.that(actualFromState).is.equalTo([
         { ...formState[0],
           hours: [
-            { hour: '08:50', selected: true },
-            { hour: '09:00', selected: false }
+            { value: '08:50', selected: true },
+            { value: '09:00', selected: false }
           ]}
       ]);
     });

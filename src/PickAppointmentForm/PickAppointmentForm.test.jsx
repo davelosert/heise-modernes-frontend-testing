@@ -7,7 +7,7 @@ describe('PickAppointmentForm', () => {
     cleanup();
   });
 
-  it('renders the given dates first.', async () => {
+  it('renders the given dates.', async () => {
     const mockDates = [
       { date: '27.05.', hours: [ '08:50 Uhr' ]},
       { date: '28.05.', hours: [ '08:50 Uhr' ]}
@@ -31,5 +31,9 @@ describe('PickAppointmentForm', () => {
     fireEvent.click(dateToClick);
 
     assert.that(dateToClick.checked).is.true();
+  });
+
+  it('renders the hours for the selected date.', async () => {
+
   });
 });

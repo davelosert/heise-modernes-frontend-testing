@@ -1,20 +1,20 @@
 import React from 'react';
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 
-const DayPicker = ({ dates, onChange }) => {
-  const selectedOption = dates.find(dateOption => dateOption.selected);
-  const buttons = dates.map(dateOption => (
+const ValuePicker = ({ options, onChange }) => {
+  const selectedOption = options.find(option => option.selected);
+  const buttons = options.map(option => (
     <ToggleButton
-      key={ dateOption.date }
+      key={ option.value }
       variant='secondary'
-      value={ dateOption.date }
-    >{dateOption.date}
+      value={ option.value }
+    >{option.value}
     </ToggleButton>
   ));
 
   return (
     <ToggleButtonGroup
-      value={ selectedOption?.date }
+      value={ selectedOption?.value }
       onChange={ onChange }
       name='options'
     >
@@ -24,5 +24,5 @@ const DayPicker = ({ dates, onChange }) => {
 };
 
 export {
-  DayPicker
+  ValuePicker
 };

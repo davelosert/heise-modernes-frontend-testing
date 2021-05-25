@@ -38,7 +38,7 @@ describe('ValuePicker', () => {
       { value: '22.05.', selected: true }
     ];
 
-    const { getByLabelText } = render(<ValuePicker options={ mockDates } onChange={ } />);
+    const { getByLabelText } = render(<ValuePicker options={ mockDates } onChange={ () => {} } />);
 
     const selectedOption = getByLabelText('22.05.');
 

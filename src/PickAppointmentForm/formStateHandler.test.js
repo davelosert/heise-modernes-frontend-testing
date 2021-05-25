@@ -16,9 +16,31 @@ describe('formStateHandler', () => {
 
       assert.that(result).is.equalTo([{
         value: '21.05.',
-        selected: false,
-        hours: [{ value: '08:50', selected: false }]
+        selected: true,
+        hours: [{ value: '08:50', selected: true }]
       }]);
+    });
+
+    it('sets "selected" of the first date and hour to true.', async () => {
+      const inputDates = [
+        { date: '21.05.', hours: [ '08:50', '09:00' ]},
+        { date: '22.05.', hours: [ '09:00' ]}
+      ];
+
+      const result = convertToFormState(inputDates);
+
+      assert.that(result).is.equalTo([
+        {
+          value: '21.05.',
+          selected: true,
+          hours: [{ value: '08:50', selected: true }, { value: '09:00', selected: false }]
+        },
+        {
+          value: '22.05.',
+          selected: false,
+          hours: [{ value: '09:00', selected: false }]
+        }
+      ]);
     });
 
     it('filters out dates without any available hours.', async () => {

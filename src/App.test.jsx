@@ -2,7 +2,7 @@ import { ApiContext } from './ApiConnector/ApiContext';
 import App from './App';
 import { assert } from 'assertthat';
 import { createMockApi } from './ApiConnector/MockApi';
-import { cleanup, render, waitFor } from '@testing-library/react';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
 const createMockContext = (api = createMockApi()) => ({
@@ -43,7 +43,7 @@ describe('App', () => {
 
     assert.that(document.body.contains(loadingSpinner));
 
-    // Cleanup
+    // Cleanup to not have a pending promise floating around
     resolveCall([
       { date: '27.05.', hours: [ '09:00 Uhr' ]}
     ]);
@@ -57,7 +57,7 @@ describe('App', () => {
       ])
     });
 
-    const { getByText } = render(
+    const { getByText, getByLabelText } = render(
       <ApiContext.Provider value={ createMockContext(mockApi) }>
         <App />
       </ApiContext.Provider>
@@ -65,6 +65,20 @@ describe('App', () => {
 
     await waitFor(() => {
       assert.that(document.body.contains(getByText('Terminauswahl')));
+      assert.that(document.body.contains(getByLabelText('27.05.')));
     });
+  });
+
+  it('renders a success message once the form was submitted.', async () => {
+    const { getByText } = render(
+      <ApiContext.Provider value={ createMockContext() }>
+        <App />
+      </ApiContext.Provider>
+    );
+
+    await waitFor(() => getByText('Terminauswahl'));
+    fireEvent.click(getByText('Termin verbindlich buchen'));
+
+    assert.that(document.body.contains(getByText('Ihr Termin wurde erfolgreich gebucht!')));
   });
 });

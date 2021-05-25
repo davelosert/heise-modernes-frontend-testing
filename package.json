@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "start": "webpack serve",
+    "start": "concurrently \"npm:start:frontend\" \"npm:start:backend\"",
+    "start:frontend": "webpack serve",
+    "start:backend": "json-server --watch backendMockData.json",
     "test": "mocha 'src/**/*.test.{js,jsx}'",
     "test:watch": "mocha --watch 'src/**/*.test.{js,jsx}'",
     "cypress:open": "cypress open"
@@ -24,6 +26,7 @@
     "@testing-library/user-event": "13.1.9",
     "assertthat": "6.2.1",
     "babel-loader": "8.2.2",
+    "concurrently": "6.2.0",
     "css-loader": "5.2.5",
     "cypress": "7.4.0",
     "eslint": "7.27.0",
@@ -31,6 +34,7 @@
     "global-jsdom": "8.1.0",
     "html-webpack-plugin": "5.3.1",
     "jsdom": "16.6.0",
+    "json-server": "0.16.3",
     "mocha": "8.4.0",
     "sinon": "11.0.0",
     "style-loader": "2.0.0",

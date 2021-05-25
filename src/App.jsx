@@ -1,9 +1,15 @@
 import { PickAppointmentForm } from './PickAppointmentForm/PickAppointmentForm';
-import { Alert, Col, Container, Row } from 'react-bootstrap';
+import { useAvailableDates } from './ApiConnector/useAvailableDates';
+import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
 import React, { useState } from 'react';
 
 const App = () => {
   const [ isSubmitted, setIsSubmitted ] = useState(false);
+  const [ isLoading, availableDates ] = useAvailableDates();
+
+  if (isLoading) {
+    return <Spinner animation='border' />;
+  }
 
   const handleSubmit = () => {
     setIsSubmitted(true);
@@ -13,11 +19,7 @@ const App = () => {
     (<Alert variant='success'>Ihr Termin wurde erfolgreich gebucht!</Alert>) :
     (
       <PickAppointmentForm
-        dates={ [
-          { date: '21.05.', hours: [ '08:50', '09:00', '09:10' ]},
-          { date: '22.05.', hours: [ '09:00', '09:10' ]},
-          { date: '23.05.', hours: [ '08:50', '09:00', '09:10' ]}
-        ] }
+        dates={ availableDates }
         onSubmit={ handleSubmit }
       />
     );
@@ -27,7 +29,7 @@ const App = () => {
       <Row>
         <Col>
           <h1>
-            Impftermin buchen
+            GetVaxxed!
           </h1>
         </Col>
       </Row>

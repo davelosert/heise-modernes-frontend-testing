@@ -4,10 +4,10 @@ describe('Application Tests', () => {
   it('loads the page.', () => {
     cy.visit('http://localhost:8080');
 
-    cy.contains('Impftermin buchen');
+    cy.contains('GetVaxxed!');
   });
 
-  it('lets us fill the form and submit.', () => {
+  it('allows to fill the form and shows a success message after submit.', () => {
     cy.visit('http://localhost:8080');
 
     cy.contains('22.05.').click();

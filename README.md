@@ -11,7 +11,7 @@ Auf dem System werden folgende Installationen benötigt:
 - npm (> Version 6)
 - Chrome oder Firefox als Browser
 
-## Installation der Abhängigkeiten
+### Installation der Abhängigkeiten
 
 Vor dem ersten Start müssen alle Abhängigkeiten einmalig installiert werden. Öffne dazu ein Terminal, navigiere in das Projektverzeichnis und tippe dann:
 
@@ -40,3 +40,24 @@ $ npm run test
 ```shell
 $ npm run cypress:open
 ```
+
+## Test selbst implementieren
+
+Auf dem Branch **main** befindet sich die Musterlösung.
+Der Branch **No_Tests enhtält eben keine Tests und dient damit als Startpunkt, diese zur Übung selbst zu implementieren.
+
+Test dabei die folgenden Dateien in dieser Reihenfolge:
+
+- [src/PickAppointmentForm/formStateHandler.js](./src/PickAppointmentForm/formStateHandler.js)
+  - Unit-Tests einfacher Datentransformationen
+- [src/PickAppointmentForm/ValuePicker.jsx](./src/PickAppointmentForm/ValuePicker.jsx)
+  - Erste Component-Tests mit der React-Testing-Library
+  - Nutze sinon, um den Callback zu prüfen
+- [src/PickAppointmentForm/PickAppointmentForm.jsx](./src/PickAppointmentForm/PickAppointmentForm.jsx)
+  - Nutze **user-events** um auch die Inputs von Textfeldern zu testen
+- [src/App.jsx](./src/App.jsx)
+  - Mocke die BackendAPI, um die Gesamt-App integrativ testen zu können
+  
+Danach kannst du versuchen, im Ordner *cypress/integration* einen Cypress-Test zu implementieren, der die Applikation Ende-Zu-Ende testet.
+
+Vergiss nicht, die App vorher mit `npm run start` zu starten!

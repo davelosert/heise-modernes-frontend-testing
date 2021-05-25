@@ -1,9 +1,9 @@
 {
   "scripts": {
     "start": "webpack serve",
-    "test": "mocha src/**/*.test.jsx"
+    "test": "mocha 'src/**/*.test.{js,jsx}'",
+    "test:watch": "mocha --watch 'src/**/*.test.{js,jsx}'"
   },
-  "type": "module",
   "dependencies": {
     "@babel/plugin-transform-runtime": "7.14.3",
     "bootstrap": "4.6.0",

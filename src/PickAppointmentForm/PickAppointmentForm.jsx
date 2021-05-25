@@ -32,13 +32,11 @@ const PickAppointmentForm = ({ dates, onSubmit }) => {
 
   return (
     <Form noValidate={ true } onSubmit={ handleSubmit }>
-      <Form.Group>
-        <Form.Row>
-          <label>
-            Datum wählen: <ValuePicker options={ dateState } onChange={ handleDateChange } />
-          </label>
-        </Form.Row>
-      </Form.Group>
+      <Form.Row>
+        <label>
+          Datum wählen: <ValuePicker options={ dateState } onChange={ handleDateChange } />
+        </label>
+      </Form.Row>
       <Form.Row>
         <label>
           Uhrzeit wählen: <ValuePicker options={ selectedDate.hours } onChange={ handleHourState } />

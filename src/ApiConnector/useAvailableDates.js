@@ -1,18 +1,20 @@
-import { ApiLibraryContext } from './ApiLibraryContext';
+import { ApiContext } from './ApiContext';
 import { useContext, useEffect, useState } from 'react';
 
 const useAvailableDates = () => {
-  const backend = useContext(ApiLibraryContext);
+  const { api } = useContext(ApiContext);
 
   const [ isLoading, setIsLoading ] = useState(true);
   const [ availableDates, setAvailableDates ] = useState([]);
 
   useEffect(() => {
-    backend.httpLib('http://localhost:3000/availableDates').
-      then(response => response.json()).
+    api.loadAvailableDates().
       then(givenDates => {
         setAvailableDates(givenDates);
         setIsLoading(false);
+      }).catch(ex => {
+        // eslint-disable-next-line no-console
+        console.error(ex);
       });
   }, []);
 

@@ -4,25 +4,36 @@ import { Alert, Col, Container, Row, Spinner } from 'react-bootstrap';
 import React, { useState } from 'react';
 
 const App = () => {
-  const [ isSubmitted, setIsSubmitted ] = useState(false);
   const [ isLoading, availableDates ] = useAvailableDates();
-
-  if (isLoading) {
-    return <Spinner animation='border' />;
-  }
+  const [ isSubmitted, setIsSubmitted ] = useState(false);
 
   const handleSubmit = () => {
     setIsSubmitted(true);
   };
 
-  const body = isSubmitted ?
-    (<Alert variant='success'>Ihr Termin wurde erfolgreich gebucht!</Alert>) :
-    (
-      <PickAppointmentForm
-        dates={ availableDates }
-        onSubmit={ handleSubmit }
-      />
+  let body;
+
+  if (isLoading) {
+    body = (
+      <Spinner animation='border' role='status'>
+        <span className='sr-only'>Lade freie Termine...</span>
+      </Spinner>
     );
+  } else if (isSubmitted) {
+    body = (
+      <Alert variant='success'>Ihr Termin wurde erfolgreich gebucht!</Alert>
+    );
+  } else {
+    body = (
+      <React.Fragment>
+        <h4>Terminauswahl</h4>
+        <PickAppointmentForm
+          dates={ availableDates }
+          onSubmit={ handleSubmit }
+        />
+      </React.Fragment>
+    );
+  }
 
   return (
     <Container fluid={ true }>
@@ -35,7 +46,7 @@ const App = () => {
       </Row>
       <Row>
         <Col>
-          { body}
+          { body }
         </Col>
       </Row>
     </Container>
